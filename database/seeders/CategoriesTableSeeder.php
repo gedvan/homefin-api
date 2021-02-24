@@ -24,6 +24,7 @@ class CategoriesTableSeeder extends Seeder
                 'name' => $faker->words(2, true),
                 'type' => $faker->randomElement(['I', 'O']),
                 'parent_id' => null,
+                'color' => $faker->safeHexColor,
             ]);
             $numChildren = rand(1, 5);
             for ($j = 0; $j < $numChildren; $j++) {

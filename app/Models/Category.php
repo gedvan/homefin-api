@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type', 'parent_id'];
+    protected $fillable = ['name', 'type', 'parent_id', 'color'];
 
     public function parent() {
         return $this->belongsTo(self::class, 'parent_id');
