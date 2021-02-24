@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,10 @@ class Category extends Model
 
     public function subcategories() {
         return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function scopeOnlySubcategories(Builder $query) {
+        return $query->whereNotNull('parent_id');
     }
 
     protected static function booted()

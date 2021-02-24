@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 class CategoriesController extends Controller
 {
     public function teste() {
+
     }
 
-    public function list() {
+    public function index() {
         $allCategories = Category::all()->toArray();
         $categories = [];
         foreach ($allCategories as $category) {
@@ -28,15 +29,15 @@ class CategoriesController extends Controller
         return array_values($categories);
     }
 
+    public function store(Request $request) {
+        $category = Category::create($request->all());
+        return new JsonResponse($category, 201);
+    }
+
     public function show(Category $category) {
         $categoryArray = $category->toArray();
         $categoryArray['subcategories'] = $category->subcategories->toArray();
         return $categoryArray;
-    }
-
-    public function create(Request $request) {
-        $category = Category::create($request->all());
-        return new JsonResponse($category, 201);
     }
 
     public function update(Request $request, Category $category) {

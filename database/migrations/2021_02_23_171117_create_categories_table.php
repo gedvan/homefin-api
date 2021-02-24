@@ -20,9 +20,8 @@ class CreateCategoriesTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('parent_id')
-                ->references('id')->on('categories')
-                ->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('parent_id')->references('id')->on('categories')
+                ->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

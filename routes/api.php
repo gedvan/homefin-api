@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\TransactionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +22,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('teste', [CategoriesController::class, 'teste']);
 
-Route::get('categories', [CategoriesController::class, 'list']);
-Route::get('categories/{category}', [CategoriesController::class, 'show']);
-Route::post('categories', [CategoriesController::class, 'create']);
-Route::put('categories/{category}', [CategoriesController::class, 'update']);
-Route::delete('categories/{category}', [CategoriesController::class, 'delete']);
+Route::get('categories',  [CategoriesController::class, 'index']);
+Route::post('categories', [CategoriesController::class, 'store']);
+Route::get('categories/{category}',     [CategoriesController::class, 'show']);
+Route::put('categories/{category}',     [CategoriesController::class, 'update']);
+Route::delete('categories/{category}',  [CategoriesController::class, 'delete']);
+
+Route::get('transactions',  [TransactionsController::class, 'index']);
+Route::post('transactions', [TransactionsController::class, 'store']);
+Route::get('transactions/{transaction}',    [TransactionsController::class, 'show']);
+Route::put('transactions/{transaction}',    [TransactionsController::class, 'update']);
+Route::delete('transactions/{transaction}', [TransactionsController::class, 'delete']);
